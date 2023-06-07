@@ -10,6 +10,10 @@ public class GUI_Manager implements GLEventListener{
 	JFrame mainWin_obj;
 	GLJPanel glPane_obj;
 	
+	int VS_SINGLE = -1;
+	int FS_SINGLE = -1;
+	int PRG_SINGLE = -1;
+	
 	// constructor
 	public GUI_Manager()
 	{
@@ -53,7 +57,7 @@ public class GUI_Manager implements GLEventListener{
 		
 		// clear buffer
 		GL.glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-		GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
+		GL.glClear(GL4.GL_COLOR_BUFFER_BIT | GL4.GL_DEPTH_BUFFER_BIT);
 		
 		// finish
 		GL.glFinish();
@@ -139,6 +143,8 @@ public class GUI_Manager implements GLEventListener{
 	
 	void setup_shader(GL4 GL)
 	{
-		
+		VS_SINGLE = GL_shaderLoader_Class.loadShaderSource_And_CompileShader(GL, "SHADER/VS_SINGLE.txt", 0);
+		FS_SINGLE = GL_shaderLoader_Class.loadShaderSource_And_CompileShader(GL, "SHADER/FS_SINGLE.txt", 2);
+		PRG_SINGLE = GL_shaderLoader_Class.createProgram_And_AttachShader(GL, VS_SINGLE, -1, FS_SINGLE);
 	}
 }
